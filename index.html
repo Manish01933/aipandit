@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      (function() {
+        // Suppress unhandled WebSocket rejections/errors from Vite HMR client in iframe
+        window.addEventListener('unhandledrejection', function(e) {
+          var msg = (e && e.reason && (e.reason.message || String(e.reason))) || '';
+          if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('vite') !== -1) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+          }
+        });
+        window.addEventListener('error', function(e) {
+          var msg = (e && (e.message || String(e))) || '';
+          if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('vite') !== -1) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+          }
+        });
+
+        // Intercept Vite HMR WebSocket connections to prevent closure errors
+        var OrigWS = window.WebSocket;
+        if (OrigWS) {
+          function ViteHmrWebSocket(url, protocols) {
+            var isHmr = false;
+            try {
+              if (protocols === 'vite-hmr' || (Array.isArray(protocols) && protocols.indexOf('vite-hmr') !== -1)) {
+                isHmr = true;
+              } else if (typeof url === 'string' && (url.indexOf('token=') !== -1 || url.indexOf('vite-hmr') !== -1)) {
+                isHmr = true;
+              }
+            } catch (err) {}
+
+            if (!isHmr) {
+              return new OrigWS(url, protocols);
+            }
+
+            var listeners = {};
+            var self = {
+              url: url,
+              protocol: 'vite-hmr',
+              readyState: 1,
+              binaryType: 'blob',
+              bufferedAmount: 0,
+              extensions: '',
+              onopen: null,
+              onclose: null,
+              onerror: null,
+              onmessage: null,
+              addEventListener: function(type, fn) {
+                if (!listeners[type]) listeners[type] = [];
+                listeners[type].push(fn);
+              },
+              removeEventListener: function(type, fn) {
+                if (!listeners[type]) return;
+                listeners[type] = listeners[type].filter(function(l) { return l !== fn; });
+              },
+              dispatchEvent: function(event) {
+                var handler = self['on' + event.type];
+                if (typeof handler === 'function') {
+                  try { handler.call(self, event); } catch (e) {}
+                }
+                var list = listeners[event.type] || [];
+                list.forEach(function(l) {
+                  try { l.call(self, event); } catch (e) {}
+                });
+                return true;
+              },
+              send: function() {},
+              close: function() {
+                self.readyState = 3;
+                self.dispatchEvent(new Event('close'));
+              }
+            };
+
+            setTimeout(function() {
+              self.dispatchEvent(new Event('open'));
+            }, 0);
+
+            return self;
+          }
+
+          ViteHmrWebSocket.prototype = OrigWS.prototype;
+          ViteHmrWebSocket.CONNECTING = 0;
+          ViteHmrWebSocket.OPEN = 1;
+          ViteHmrWebSocket.CLOSING = 2;
+          ViteHmrWebSocket.CLOSED = 3;
+          window.WebSocket = ViteHmrWebSocket;
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AstroDost AI - Vedic Astrology & Horoscope</title>
+    <meta name="description" content="Comprehensive Vedic Astrology & Numerology portal featuring Lo Shu Grid Magic Square calculator, Jagannatha Hora (D1-D60 Varga charts, Chara Karakas, Arudhas, Shadbala, Ashtakavarga), Janam Kundali with Auspicious Yogas, 36-Gun Matchmaking, Daily Panchang & Muhurat, and AI Astrologer chat." />
+    <meta property="og:title" content="AstroDost AI - Vedic Astrology & Horoscope" />
+    <meta property="og:description" content="Comprehensive Vedic Astrology & Numerology portal featuring Lo Shu Grid Magic Square calculator, Jagannatha Hora (D1-D60 Varga charts, Chara Karakas, Arudhas, Shadbala, Ashtakavarga), Janam Kundali with Auspicious Yogas, 36-Gun Matchmaking, Daily Panchang & Muhurat, and AI Astrologer chat." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://astrodost.in/" />
+    <link rel="canonical" href="https://astrodost.in/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- PWA & Mobile Web App Meta Tags -->
+    <meta name="theme-color" content="#064e3b" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="AstroDost" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa-192x192.png" />
+
+    <!-- Google Fonts: Vedic, Hindi, Modern & Royal Typography Collection -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kalam:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Noto+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Poppins:wght@400;500;600;700;800;900&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

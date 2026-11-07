@@ -1,0 +1,6 @@
+{
+  "name": "AstroDost AI - Vedic Astrology & Horoscope",
+  "description": "Comprehensive Vedic Astrology & Numerology portal featuring Lo Shu Grid Magic Square calculator, Jagannatha Hora (D1-D60 Varga charts, Chara Karakas, Arudhas, Shadbala, Ashtakavarga), Janam Kundali with Auspicious Yogas, 36-Gun Matchmaking, Daily Panchang & Muhurat, and AI Astrologer chat.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

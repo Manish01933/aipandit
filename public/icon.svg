@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="50%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#065f46" />
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="1" />
+      <stop offset="45%" stop-color="#f59e0b" stop-opacity="0.9" />
+      <stop offset="85%" stop-color="#d97706" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#b45309" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="100%" stop-color="#facc15" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded squircle -->
+  <rect width="512" height="512" rx="115" fill="url(#bgGrad)" />
+  <rect x="12" y="12" width="488" height="488" rx="103" fill="none" stroke="#34d399" stroke-width="6" stroke-opacity="0.4" />
+
+  <!-- Outer Zodiac Circle Ring -->
+  <circle cx="256" cy="256" r="185" fill="none" stroke="#a7f3d0" stroke-width="4" stroke-dasharray="8 8" opacity="0.65" />
+  <circle cx="256" cy="256" r="165" fill="none" stroke="#34d399" stroke-width="2" opacity="0.5" />
+
+  <!-- Mystical Radial Aura -->
+  <circle cx="256" cy="256" r="130" fill="url(#sunGlow)" opacity="0.85" />
+
+  <!-- Vedic 12-Ray Sunburst / Chakra Rays -->
+  <g stroke="#fde047" stroke-width="4" stroke-linecap="round" opacity="0.9">
+    <line x1="256" y1="95" x2="256" y2="125" />
+    <line x1="256" y1="387" x2="256" y2="417" />
+    <line x1="95" y1="256" x2="125" y2="256" />
+    <line x1="387" y1="256" x2="417" y2="256" />
+    <line x1="142" y1="142" x2="163" y2="163" />
+    <line x1="370" y1="370" x2="349" y2="349" />
+    <line x1="370" y1="142" x2="349" y2="163" />
+    <line x1="142" y1="370" x2="163" y2="349" />
+  </g>
+
+  <!-- Central Star of Guidance (Dhruva Tara / Navagraha Star) -->
+  <path d="M256 150 L280 232 L362 256 L280 280 L256 362 L232 280 L150 256 L232 232 Z" fill="url(#starGrad)" />
+
+  <!-- Small Diamond Accent Stars -->
+  <circle cx="256" cy="256" r="18" fill="#ffffff" />
+  <circle cx="195" cy="195" r="7" fill="#fde047" opacity="0.8" />
+  <circle cx="317" cy="195" r="7" fill="#fde047" opacity="0.8" />
+  <circle cx="195" cy="317" r="7" fill="#fde047" opacity="0.8" />
+  <circle cx="317" cy="317" r="7" fill="#fde047" opacity="0.8" />
+
+  <!-- Crescent Moon Symbol (Chandra) -->
+  <path d="M305 185 A 38 38 0 0 0 270 240 A 30 30 0 0 1 295 190 Z" fill="#ffffff" opacity="0.9" />
+
+  <!-- Text AstroDost (Curved Vedic Banner) -->
+  <text x="256" y="450" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="36" fill="#f0fdf4" letter-spacing="4">ASTRODOST</text>
+</svg>

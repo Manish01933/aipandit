@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+:root {
+  --theme-primary: #047857;
+  --theme-primary-hover: #065f46;
+  --theme-secondary: #064e3b;
+  --theme-accent-gold: #f59e0b;
+  --theme-accent-gold-hover: #d97706;
+  --theme-background: #eaf6ed;
+  --theme-card-bg: #ffffff;
+  --theme-card-bg-muted: #f4fbf6;
+  --theme-text-main: #0f291e;
+  --theme-text-muted: #475569;
+  --theme-border: #a7f3d0;
+  --theme-header-bg: #064e3b;
+  --theme-header-text: #ffffff;
+}
+
+body {
+  background-color: var(--theme-background, #eaf6ed);
+  color: var(--theme-text-main, #0f291e);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Global Theme Utility Helpers */
+.theme-bg-app {
+  background-color: var(--theme-background, #eaf6ed) !important;
+}
+
+.theme-bg-card {
+  background-color: var(--theme-card-bg, #ffffff) !important;
+}
+
+.theme-bg-card-muted {
+  background-color: var(--theme-card-bg-muted, #f4fbf6) !important;
+}
+
+.theme-text-main {
+  color: var(--theme-text-main, #0f291e) !important;
+}
+
+.theme-text-muted {
+  color: var(--theme-text-muted, #475569) !important;
+}
+
+.theme-border {
+  border-color: var(--theme-border, #a7f3d0) !important;
+}
+
+.theme-header {
+  background-color: var(--theme-header-bg, #064e3b) !important;
+  color: var(--theme-header-text, #ffffff) !important;
+}
+
+.theme-btn-primary {
+  background-color: var(--theme-primary, #047857) !important;
+  color: #ffffff !important;
+  border-color: var(--theme-primary-hover, #065f46) !important;
+}
+
+.theme-btn-primary:hover {
+  background-color: var(--theme-primary-hover, #065f46) !important;
+}
+
+.theme-btn-gold {
+  background-color: var(--theme-accent-gold, #f59e0b) !important;
+  color: #1e1b4b !important;
+}
+
+.theme-btn-gold:hover {
+  background-color: var(--theme-accent-gold-hover, #d97706) !important;
+}
+
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.4), 0 8px 10px -6px rgba(245, 158, 11, 0.2);
+  }
+  50% {
+    box-shadow: 0 20px 35px -5px rgba(245, 158, 11, 0.65), 0 12px 16px -6px rgba(245, 158, 11, 0.4);
+  }
+}
+
+@keyframes paidBlinkGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(234, 179, 8, 0.8), 0 0 4px rgba(239, 68, 68, 0.6);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.08);
+    box-shadow: 0 0 18px rgba(234, 179, 8, 1), 0 0 8px rgba(239, 68, 68, 0.9);
+  }
+}
+
+@keyframes freeBadgePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.04);
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.95);
+  }
+}
+
+.animate-floating-guru {
+  animation: slideUpFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards, pulseGlow 3s ease-in-out infinite alternate;
+}
+
+.animate-paid-blink {
+  animation: paidBlinkGlow 1.2s ease-in-out infinite;
+}
+
+.animate-free-pulse {
+  animation: freeBadgePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 3s linear infinite;
+}
+
+@keyframes auraGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(5, 150, 105, 0.45), 0 0 40px rgba(16, 185, 129, 0.3), inset 0 0 15px rgba(209, 250, 229, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(5, 150, 105, 0.8), 0 0 60px rgba(16, 185, 129, 0.55), inset 0 0 25px rgba(209, 250, 229, 0.7);
+  }
+}
+
+.animate-aura-glow {
+  animation: auraGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes goldenAuraGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(217, 119, 6, 0.45), 0 0 40px rgba(245, 158, 11, 0.35), inset 0 0 15px rgba(254, 243, 199, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(217, 119, 6, 0.8), 0 0 60px rgba(245, 158, 11, 0.6), inset 0 0 25px rgba(254, 243, 199, 0.6);
+  }
+}
+
+.animate-gold-aura-glow {
+  animation: goldenAuraGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes neonBorderPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6), 0 0 30px rgba(5, 150, 105, 0.4), inset 0 0 15px rgba(52, 211, 153, 0.3);
+    border-color: rgba(52, 211, 153, 0.9);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 0 50px rgba(217, 119, 6, 0.5), inset 0 0 25px rgba(251, 191, 36, 0.5);
+    border-color: rgba(251, 191, 36, 1);
+  }
+}
+
+.animate-neon-glow {
+  animation: neonBorderPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes floatWave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-wave {
+  animation: floatWave 3.5s ease-in-out infinite;
+}
+
+@keyframes bannerShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-banner-shimmer {
+  animation: bannerShimmer 3s ease-in-out infinite;
+}
+
+/* Noto Sans Devanagari & Unicode Astrology Typography */
+.font-devanagari {
+  font-family: 'Noto Sans Devanagari', 'Noto Sans', sans-serif;
+}
+
+/* Dedicated Print Styles for 25-Page Complete Kundali Life Report */
+@media print {
+  /* Hide interactive app UI elements during print */
+  header,
+  nav,
+  footer,
+  aside,
+  button,
+  .no-print,
+  .pwa-prompt,
+  #header-nav,
+  .fixed {
+    display: none !important;
+  }
+
+  body, html {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Force exact A4 Page Break per Report Page */
+  .pdf-a4-page,
+  .report-print-page {
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 290mm !important;
+    margin: 0 !important;
+    padding: 10mm !important;
+    box-sizing: border-box !important;
+    border: 2px solid #d97706 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  /* Prevent table row splitting across pages */
+  table {
+    page-break-inside: auto !important;
+  }
+  tr {
+    page-break-inside: avoid !important;
+    page-break-after: auto !important;
+  }
+  thead {
+    display: table-header-group !important;
+  }
+}
+
